@@ -9,7 +9,6 @@ import {
 
 import { Header } from "./components/Header";
 import { Posts } from "./features/posts/Posts";
-import { PostsPage } from "./features/posts/PostsPage";
 
 function App() {
   return (

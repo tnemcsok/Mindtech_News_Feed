@@ -1,50 +1,38 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
 
-export type PostsState = {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
+const initialState = {
+  posts: [],
+  status: "idle",
+  error: "",
 };
 
-const initialState = {
-  posts: [
-    {
-      userId: 1,
-      id: 1,
-      title:
-        "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-      body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: "qui est esse",
-      body: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
-    },
-    {
-      userId: 1,
-      id: 3,
-      title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
-      body: "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
-    },
-    {
-      userId: 1,
-      id: 4,
-      title: "eum et est occaecati",
-      body: "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit",
-    },
-  ],
-  status: "idle",
-  error: null,
-};
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  const response = await fetch(
+    "https://mindtech-feed-task.herokuapp.com/posts"
+  );
+  return await response.json();
+});
 
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {},
+  extraReducers: {
+    [fetchPosts.pending.type]: (state, action) => {
+      state.status = "loading";
+    },
+    [fetchPosts.fulfilled.type]: (state, action) => {
+      state.status = "succeeded";
+      // Add any fetched posts to the array
+      state.posts = state.posts.concat(action.payload);
+    },
+    [fetchPosts.rejected.type]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    },
+  },
 });
 
 export const selectPosts = (state: RootState) => state.posts.posts;
