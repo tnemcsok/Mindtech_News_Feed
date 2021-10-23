@@ -11,14 +11,16 @@ type TParams = { userId: string };
 
 export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
   const userId = parseInt(match.params.userId);
+  console.log(userId);
   const user = useAppSelector((state) => selectUserById(state, userId))!;
 
   const postsForUser = useAppSelector((state) =>
     selectPostsByUser(state, userId)
   );
+  console.log(postsForUser);
 
   const postsToRender = postsForUser.map((post: Post) => (
-    <PostCard post={post} />
+    <PostCard key={post.id} post={post} />
   ));
 
   return (
@@ -26,7 +28,7 @@ export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
       <h2 className="mt-2 text-center">{user.username}</h2>
 
       <div className="row w-75 m-auto p-3 font-weight-bold text-dark text-center border background round">
-        <h4 className="text-start mb-3">User info</h4>
+        <h4 className="mb-3">User info</h4>
         <p className="col-md-6 col-lg-4 fst-italic">Name: {user.name}</p>
         <p className="col-md-6 col-lg-4 fst-italic">Email: {user.email}</p>
         <p className="col-md-6 col-lg-4 fst-italic">Phone: {user.phone}</p>

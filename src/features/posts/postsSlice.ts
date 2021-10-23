@@ -49,6 +49,9 @@ export const selectAllPosts = (state: RootState) => state.posts.posts;
 export const selectPostsByUser = (state: RootState, userId: number) =>
   state.posts.posts.filter((post: Post) => post.userId === userId);
 
+export const selectPostById = (state: RootState, postId: number) =>
+  state.posts.posts.filter((post: Post) => post.id === postId);
+
 // Selectors
 // export const {
 //   selectAll: selectAllPosts,

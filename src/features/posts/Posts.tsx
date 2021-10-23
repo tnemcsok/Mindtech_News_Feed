@@ -24,7 +24,7 @@ export const Posts = () => {
     renderedPosts = <Spinner text="Loading..." />;
   } else if (postStatus === "succeeded") {
     renderedPosts = posts.map((post: Post) => {
-      return <PostCard post={post} />;
+      return <PostCard key={post.id} post={post} />;
     });
   } else {
     renderedPosts = <div>{error}</div>;

@@ -105,3 +105,19 @@
 .background {
   background-color: rgb(238, 238, 238);
 }
+
+.text-justify {
+  text-align: justify;
+}
+
+.authorLink {
+  text-align: center;
+  color: black;
+  text-decoration: none;
+  display: block;
+  font-style: italic;
+}
+
+.authorLink:hover {
+  color: gray;
+}

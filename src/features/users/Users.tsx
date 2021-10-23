@@ -10,13 +10,17 @@ export const Users = () => {
     <div className="col-md-6 col-lg-4 mb-4">
       <div
         className="card m-auto"
-        style={{ minHeight: "15rem", maxWidth: "20rem" }}
+        style={{ minHeight: "10rem", maxWidth: "20rem" }}
       >
         <div className="card-body">
           <h5 className="card-title text-center">{user.name}</h5>
           <p className="card-text">Email: {user.email}</p>
           <p className="card-text">Website: {user.website}</p>
-          <Link to={`/users/${user.id}`}>Visit profile</Link>
+          <Link to={`/users/${user.id}`}>
+            <button className="btn btn-primary d-block m-auto">
+              Visit Profile
+            </button>
+          </Link>
         </div>
       </div>
     </div>
