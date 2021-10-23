@@ -25,7 +25,7 @@ export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
 
   return (
     <section>
-      <h2 className="mt-2 text-center">{user.username}</h2>
+      <h2 className="mt-2 text-center ephesis">{user.username}</h2>
 
       <div className="row w-75 m-auto p-3 font-weight-bold text-dark text-center border background round">
         <h4 className="mb-3">User info</h4>

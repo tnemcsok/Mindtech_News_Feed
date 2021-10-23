@@ -1,5 +1,5 @@
 :root {
-  --redux-color: #0275d8;
+  --primary-color: #0275d8;
 }
 
 .spinner {
@@ -21,30 +21,30 @@
   width: 5em;
   height: 5em;
   border-radius: 50%;
-  background: var(--redux-color);
+  background: var(--primary-color);
   background: -moz-linear-gradient(
     left,
-    var(--redux-color) 10%,
+    var(--primary-color) 10%,
     rgba(128, 0, 255, 0) 42%
   );
   background: -webkit-linear-gradient(
     left,
-    var(--redux-color) 10%,
+    var(--primary-color) 10%,
     rgba(128, 0, 255, 0) 42%
   );
   background: -o-linear-gradient(
     left,
-    var(--redux-color) 10%,
+    var(--primary-color) 10%,
     rgba(128, 0, 255, 0) 42%
   );
   background: -ms-linear-gradient(
     left,
-    var(--redux-color) 10%,
+    var(--primary-color) 10%,
     rgba(128, 0, 255, 0) 42%
   );
   background: linear-gradient(
     to right,
-    var(--redux-color) 10%,
+    var(--primary-color) 10%,
     rgba(128, 0, 255, 0) 42%
   );
   position: relative;
@@ -58,7 +58,7 @@
 .loader:before {
   width: 50%;
   height: 50%;
-  background: var(--redux-color);
+  background: var(--primary-color);
   border-radius: 100% 0 0 0;
   position: absolute;
   top: 0;

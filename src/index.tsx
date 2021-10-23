@@ -6,8 +6,10 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 
 import { fetchUsers } from "./features/users/usersSlice";
+import { fetchComments } from "./features/comments/commentsSlice";
 
 store.dispatch(fetchUsers());
+store.dispatch(fetchComments());
 
 ReactDOM.render(
   <React.StrictMode>
