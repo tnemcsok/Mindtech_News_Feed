@@ -1,5 +1,14 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  createSelector,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
+import { Post } from "../../app/types";
+import { createEntityAdapter } from "@reduxjs/toolkit";
+
+// const postsAdapter = createEntityAdapter<Post>();
 
 const initialState = {
   posts: [],
@@ -35,6 +44,21 @@ export const postsSlice = createSlice({
   },
 });
 
-export const selectPosts = (state: RootState) => state.posts.posts;
+export const selectAllPosts = (state: RootState) => state.posts.posts;
+
+export const selectPostsByUser = (state: RootState, userId: number) =>
+  state.posts.posts.filter((post: Post) => post.userId === userId);
+
+// Selectors
+// export const {
+//   selectAll: selectAllPosts,
+//   selectById: selectPostById,
+//   selectIds: selectPostIds,
+// } = postsAdapter.getSelectors<any>((state) => state.posts);
+
+// export const selectPostsByUser = createSelector(
+//   [selectAllPosts, (state: RootState, userId: number) => userId],
+//   (posts, userId) => posts.filter((post) => post.userId === userId)
+// );
 
 export default postsSlice.reducer;

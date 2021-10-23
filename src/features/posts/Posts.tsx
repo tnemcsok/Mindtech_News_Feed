@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { Spinner } from "../../components/Spinner";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectPosts, fetchPosts } from "./postsSlice";
-import { PostsState } from "../../app/types";
+import { selectAllPosts, fetchPosts } from "./postsSlice";
+import { Post } from "../../app/types";
+import { PostCard } from "./PostCard";
 
 export const Posts = () => {
-  const posts = useAppSelector(selectPosts);
+  const posts = useAppSelector(selectAllPosts);
   const dispatch = useAppDispatch();
 
   const postStatus = useAppSelector((state) => state.posts.status);
@@ -22,20 +23,8 @@ export const Posts = () => {
   if (postStatus === "loading") {
     renderedPosts = <Spinner text="Loading..." />;
   } else if (postStatus === "succeeded") {
-    renderedPosts = posts.map((post: PostsState) => {
-      return (
-        <div className="col-md-6 col-lg-4 mb-4">
-          <div
-            className="card m-auto"
-            style={{ minHeight: "15rem", maxWidth: "20rem" }}
-          >
-            <div className="card-body">
-              <h5 className="card-title text-center">{post.title}</h5>
-              <p className="card-text">{post.body}</p>
-            </div>
-          </div>
-        </div>
-      );
+    renderedPosts = posts.map((post: Post) => {
+      return <PostCard post={post} />;
     });
   } else {
     renderedPosts = <div>{error}</div>;

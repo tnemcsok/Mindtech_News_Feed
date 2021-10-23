@@ -1,4 +1,4 @@
-export type PostsState = {
+export type Post = {
   userId: number;
   id: number;
   title: string;
@@ -10,7 +10,7 @@ export interface User {
   name: string;
   username: string;
   email: string;
-  adress: {
+  address: {
     street: string;
     suite: string;
     city: string;
