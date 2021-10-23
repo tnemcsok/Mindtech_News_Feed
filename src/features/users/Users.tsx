@@ -13,7 +13,7 @@ export const Users = () => {
         style={{ minHeight: "10rem", maxWidth: "20rem" }}
       >
         <div className="card-body">
-          <h5 className="card-title text-center">{user.name}</h5>
+          <h5 className="card-title text-center">{user.username}</h5>
           <p className="card-text">Email: {user.email}</p>
           <p className="card-text">Website: {user.website}</p>
           <Link to={`/users/${user.id}`}>

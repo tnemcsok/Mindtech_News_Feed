@@ -10,7 +10,7 @@ export const PostAuthor = ({ userId }: PostAuthorProps) => {
 
   return (
     <Link className="authorLink mb-3" to={`/users/${userId}`}>
-      by {author ? author.name : "Unknown author"}
+      by {author ? author.username : "Unknown author"}
     </Link>
   );
 };

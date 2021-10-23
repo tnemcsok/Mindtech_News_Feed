@@ -48,6 +48,12 @@ export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
         </p>
       </div>
 
+      <Link to={`/edituser/${user.id}`}>
+        <button className="btn btn-primary d-block m-auto mt-4">
+          Edit User
+        </button>
+      </Link>
+
       <div className="p-5 container">
         <h4 className="mb-3">My Posts</h4>
         <div className="row">{postsToRender}</div>

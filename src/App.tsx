@@ -12,6 +12,7 @@ import { Posts } from "./features/posts/Posts";
 import { Users } from "./features/users/Users";
 import { SingleUser } from "./features/users/SingleUser";
 import { SinglePost } from "./features/posts/SinglePost";
+import { EditUserForm } from "./features/users/EditUser";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/users" component={Users} />
           <Route exact path="/users/:userId" component={SingleUser} />
           <Route exact path="/posts/:postId" component={SinglePost} />
+          <Route exact path="/edituser/:userId" component={EditUserForm} />
           <Redirect to="/" />
         </Switch>
       </div>
