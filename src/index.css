@@ -133,3 +133,7 @@
 .authorLink:hover {
   color: gray;
 }
+
+.min-height {
+  min-height: 100vh;
+}

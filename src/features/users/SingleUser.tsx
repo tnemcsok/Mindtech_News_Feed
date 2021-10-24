@@ -60,6 +60,6 @@ export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
       </div>
     </section>
   ) : (
-    <h4 className="p-5">Failed to fetch users</h4>
+    <h4 className="p-5">Failed to fetch user</h4>
   );
 };
