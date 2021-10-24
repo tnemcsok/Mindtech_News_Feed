@@ -23,7 +23,7 @@ export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
     <PostCard key={post.id} post={post} />
   ));
 
-  return (
+  return user ? (
     <section>
       <h2 className="mt-5 mb-4 text-center ephesis">{user.username}</h2>
 
@@ -59,5 +59,7 @@ export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
         <div className="row">{postsToRender}</div>
       </div>
     </section>
+  ) : (
+    <h4 className="p-5">Failed to fetch users</h4>
   );
 };

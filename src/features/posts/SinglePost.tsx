@@ -3,6 +3,7 @@ import { RouteComponentProps } from "react-router-dom";
 
 import { PostAuthor } from "./PostAuthor";
 import { SingleComment } from "../comments/SingleComment";
+import { Spinner } from "../../components/Spinner";
 import { Post, Comment } from "../../app/types";
 import { useAppSelector } from "../../app/hooks";
 import { selectPostById } from "./postsSlice";
@@ -13,6 +14,8 @@ type TParams = { postId: string };
 
 export const SinglePost = ({ match }: RouteComponentProps<TParams>) => {
   const postId = parseInt(match.params.postId);
+
+  const postStatus = useAppSelector((state) => state.posts.status);
 
   const post: Post[] = useAppSelector((state) => selectPostById(state, postId));
 
@@ -26,7 +29,7 @@ export const SinglePost = ({ match }: RouteComponentProps<TParams>) => {
     <div>Comments not available</div>
   );
 
-  return post ? (
+  return post.length ? (
     <div className="p-2">
       <article className="col-md-6 mx-auto mb-4 mt-3">
         <h2 className="text-center">{capitalizeFirstLetter(post[0].title)}</h2>
@@ -38,6 +41,8 @@ export const SinglePost = ({ match }: RouteComponentProps<TParams>) => {
         <div className="col-10 col-md-8 mx-auto">{renderedComments}</div>
       </div>
     </div>
+  ) : postStatus === "loading" ? (
+    <Spinner text="Loading..." />
   ) : (
     <section>
       <h2>Post not found!</h2>
