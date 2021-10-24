@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
+
 import { Spinner } from "../../components/Spinner";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectAllPosts, fetchPosts } from "./postsSlice";
 import { Post } from "../../app/types";
 import { PostCard } from "./PostCard";
 import { Pagination } from "../../components/Pagination";
+import { selectAllPosts, fetchPosts } from "./postsSlice";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
 export const Posts = () => {
-  const posts = useAppSelector(selectAllPosts);
   const dispatch = useAppDispatch();
 
+  const posts = useAppSelector(selectAllPosts);
+
   const postStatus = useAppSelector((state) => state.posts.status);
+
   const error = useAppSelector((state) => state.posts.error);
 
   let [page, setPage] = useState(1);
+
+  let totalPages = 1;
 
   useEffect(() => {
     if (postStatus === "idle") {
@@ -21,15 +26,17 @@ export const Posts = () => {
     }
   }, [postStatus, dispatch]);
 
-  let totalPages = 1;
   let renderedPosts;
 
+  // Handle loading status and errors
   if (postStatus === "loading") {
     renderedPosts = <Spinner text="Loading..." />;
   } else if (postStatus === "succeeded") {
     totalPages = Math.ceil(posts.length / 6);
-    const sliced = posts.slice((page - 1) * 6, page * 6);
-    renderedPosts = sliced.map((post: Post) => {
+
+    const slicedPosts = posts.slice((page - 1) * 6, page * 6);
+
+    renderedPosts = slicedPosts.map((post: Post) => {
       return <PostCard key={post.id} post={post} />;
     });
   } else {

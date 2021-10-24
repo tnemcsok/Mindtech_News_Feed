@@ -1,4 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+
 import postsReducer from "../features/posts/postsSlice";
 import usersSlice from "../features/users/usersSlice";
 import commentsSlice from "../features/comments/commentsSlice";

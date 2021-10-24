@@ -1,23 +1,23 @@
 import React from "react";
+import { Link, RouteComponentProps } from "react-router-dom";
+
+import { PostCard } from "../posts/PostCard";
 
 import { selectUserById } from "./usersSlice";
 import { selectPostsByUser } from "../posts/postsSlice";
-import { Link, RouteComponentProps } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { Post } from "../../app/types";
-import { PostCard } from "../posts/PostCard";
 
 type TParams = { userId: string };
 
 export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
   const userId = parseInt(match.params.userId);
-  console.log(userId);
+
   const user = useAppSelector((state) => selectUserById(state, userId))!;
 
   const postsForUser = useAppSelector((state) =>
     selectPostsByUser(state, userId)
   );
-  console.log(postsForUser);
 
   const postsToRender = postsForUser.map((post: Post) => (
     <PostCard key={post.id} post={post} />

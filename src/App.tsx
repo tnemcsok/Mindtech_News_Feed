@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,12 +6,13 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import "./App.css";
 import { Header } from "./components/Header";
 import { Posts } from "./features/posts/Posts";
-import { Users } from "./features/users/Users";
 import { SingleUser } from "./features/users/SingleUser";
 import { SinglePost } from "./features/posts/SinglePost";
 import { EditUserForm } from "./features/users/EditUser";
+import { Users } from "./features/users/Users";
 
 function App() {
   return (

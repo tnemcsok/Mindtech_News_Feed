@@ -1,6 +1,7 @@
 import React from "react";
 
 type PaginationPros = { page: number; totalPages: number; setPage: any };
+
 export const Pagination = ({ page, totalPages, setPage }: PaginationPros) => {
   return (
     <nav>

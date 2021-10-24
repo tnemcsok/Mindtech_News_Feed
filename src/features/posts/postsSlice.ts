@@ -1,14 +1,7 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  createSelector,
-  PayloadAction,
-} from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
-import { Post } from "../../app/types";
-import { createEntityAdapter } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// const postsAdapter = createEntityAdapter<Post>();
+import { RootState } from "../../app/store";
+import { Post } from "../../app/types";
 
 const initialState = {
   posts: [],
@@ -26,7 +19,6 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {},
   extraReducers: {
     [fetchPosts.pending.type]: (state, action) => {
@@ -34,7 +26,6 @@ export const postsSlice = createSlice({
     },
     [fetchPosts.fulfilled.type]: (state, action) => {
       state.status = "succeeded";
-      // Add any fetched posts to the array
       state.posts = state.posts.concat(action.payload);
     },
     [fetchPosts.rejected.type]: (state, action) => {
@@ -51,17 +42,5 @@ export const selectPostsByUser = (state: RootState, userId: number) =>
 
 export const selectPostById = (state: RootState, postId: number) =>
   state.posts.posts.filter((post: Post) => post.id === postId);
-
-// Selectors
-// export const {
-//   selectAll: selectAllPosts,
-//   selectById: selectPostById,
-//   selectIds: selectPostIds,
-// } = postsAdapter.getSelectors<any>((state) => state.posts);
-
-// export const selectPostsByUser = createSelector(
-//   [selectAllPosts, (state: RootState, userId: number) => userId],
-//   (posts, userId) => posts.filter((post) => post.userId === userId)
-// );
 
 export default postsSlice.reducer;

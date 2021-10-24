@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import { Post } from "../../app/types";
 import { PostAuthor } from "./PostAuthor";
-import { Link } from "react-router-dom";
 
 export function capitalizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);

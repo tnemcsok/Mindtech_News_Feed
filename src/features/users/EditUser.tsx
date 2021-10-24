@@ -1,20 +1,23 @@
 import React, { ChangeEventHandler, useState } from "react";
+import { RouteComponentProps, useHistory } from "react-router-dom";
+
 import { useAppSelector } from "../../app/hooks";
 import { useAppDispatch } from "../../app/hooks";
-import { RouteComponentProps, useHistory } from "react-router-dom";
 import { selectUserById } from "./usersSlice";
 import { userUpdated } from "./usersSlice";
 
 type TParams = { userId: string };
+
 export const EditUserForm = ({ match }: RouteComponentProps<TParams>) => {
   const userId = parseInt(match.params.userId);
 
-  const user = useAppSelector((state) => selectUserById(state, userId));
   const dispatch = useAppDispatch();
 
-  const [username, setUsername] = useState(user?.username ?? "");
-
   const history = useHistory();
+
+  const user = useAppSelector((state) => selectUserById(state, userId));
+
+  const [username, setUsername] = useState(user?.username ?? "");
 
   const onUserNameChanged: ChangeEventHandler<HTMLInputElement> = (e) =>
     setUsername(e.target.value);

@@ -4,6 +4,7 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
+
 import { RootState } from "../../app/store";
 import { User } from "../../app/types";
 
@@ -40,7 +41,6 @@ export const usersSlice = createSlice({
 
 export const { userUpdated } = usersSlice.actions;
 
-// Selectors
 export const { selectAll: selectAllUsers, selectById: selectUserById } =
   usersAdapter.getSelectors<RootState>((state) => state.users);
 

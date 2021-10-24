@@ -4,9 +4,13 @@
   --primary-color: #0275d8;
 }
 
+/* Font style for header */
+
 .aclonica {
   font-family: "Aclonica", sans-serif;
 }
+
+/* Css for the spinner to display during the loading state */
 
 .spinner {
   display: flex;
@@ -19,11 +23,9 @@
   margin: 5px;
 }
 
-/* https://projects.lukehaas.me/css-loaders/ , Loader #3 */
 .loader {
   font-size: 10px;
   margin: 10px;
-  /* text-indent: -9999em; */
   width: 5em;
   height: 5em;
   border-radius: 50%;
@@ -108,6 +110,8 @@
   }
 }
 
+/* Background color for user info */
+
 .background {
   background-color: rgb(238, 238, 238);
 }
@@ -115,6 +119,8 @@
 .text-justify {
   text-align: justify;
 }
+
+/* Author link styles */
 
 .authorLink {
   text-align: center;
