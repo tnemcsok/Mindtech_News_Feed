@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { Spinner } from "../../components/Spinner";
 import { Post } from "../../app/types";
 import { PostCard } from "./PostCard";
 import { Pagination } from "../../components/Pagination";
-import { selectAllPosts, fetchPosts } from "./postsSlice";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { selectAllPosts } from "./postsSlice";
+import { useAppSelector } from "../../app/hooks";
 
 export const Posts = () => {
-  const dispatch = useAppDispatch();
-
+  // Get posts, status and error
   const posts = useAppSelector(selectAllPosts);
-
   const postStatus = useAppSelector((state) => state.posts.status);
-
   const error = useAppSelector((state) => state.posts.error);
 
+  const userStatus = useAppSelector((state) => state.users.status);
+
+  // Declare page for pagination
   let [page, setPage] = useState(1);
-
   let totalPages = 1;
-
-  useEffect(() => {
-    if (postStatus === "idle") {
-      dispatch(fetchPosts());
-    }
-  }, [postStatus, dispatch]);
 
   let renderedPosts;
 
-  // Handle loading status and errors
-  if (postStatus === "loading") {
+  // Render posts, handle loading and error
+  if (postStatus === "loading" || userStatus === "loading") {
     renderedPosts = <Spinner text="Loading..." />;
   } else if (postStatus === "succeeded") {
     totalPages = Math.ceil(posts.length / 6);

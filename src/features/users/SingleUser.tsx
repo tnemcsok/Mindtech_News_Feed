@@ -2,7 +2,7 @@ import React from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 
 import { PostCard } from "../posts/PostCard";
-
+import { Spinner } from "../../components/Spinner";
 import { selectUserById } from "./usersSlice";
 import { selectPostsByUser } from "../posts/postsSlice";
 import { useAppSelector } from "../../app/hooks";
@@ -13,17 +13,23 @@ type TParams = { userId: string };
 export const SingleUser = ({ match }: RouteComponentProps<TParams>) => {
   const userId = parseInt(match.params.userId);
 
+  // Get user and status
   const user = useAppSelector((state) => selectUserById(state, userId))!;
+  const userStatus = useAppSelector((state) => state.users.status);
 
+  // Get posts for user
   const postsForUser = useAppSelector((state) =>
     selectPostsByUser(state, userId)
   );
 
+  // Render posts
   const postsToRender = postsForUser.map((post: Post) => (
     <PostCard key={post.id} post={post} />
   ));
 
-  return user ? (
+  return userStatus === "loading" ? (
+    <Spinner text="Loading..." />
+  ) : user ? (
     <section>
       <h2 className="mt-5 mb-4 text-center ephesis">{user.username}</h2>
 

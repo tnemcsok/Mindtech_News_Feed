@@ -9,7 +9,6 @@ import { fetchUsers } from "./features/users/usersSlice";
 import { fetchComments } from "./features/comments/commentsSlice";
 
 store.dispatch(fetchUsers());
-store.dispatch(fetchComments());
 store.dispatch(fetchPosts());
 
 ReactDOM.render(

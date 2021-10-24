@@ -35,6 +35,7 @@ export const postsSlice = createSlice({
   },
 });
 
+// Selectors
 export const selectAllPosts = (state: RootState) => state.posts.posts;
 
 export const selectPostsByUser = (state: RootState, userId: number) =>

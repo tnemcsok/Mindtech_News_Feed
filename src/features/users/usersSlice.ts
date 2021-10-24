@@ -10,7 +10,10 @@ import { User } from "../../app/types";
 
 const usersAdapter = createEntityAdapter<User>();
 
-const initialState = usersAdapter.getInitialState();
+const initialState = usersAdapter.getInitialState({
+  status: "idle",
+  error: null,
+});
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const response = await fetch(
@@ -35,7 +38,19 @@ export const usersSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUsers.fulfilled.type]: usersAdapter.setAll,
+    [fetchUsers.pending.type]: (state, action) => {
+      state.status = "loading";
+    },
+    [fetchUsers.fulfilled.type]: (state, action) => {
+      state.status = "succeeded";
+      // Add any fetched posts to the array
+      // Use the `upsertMany` reducer as a mutating update utility
+      usersAdapter.upsertMany(state, action.payload);
+    },
+    [fetchUsers.rejected.type]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    },
   },
 });
 
