@@ -27,7 +27,7 @@ export const EditUserForm = ({ match }: RouteComponentProps<TParams>) => {
   };
 
   return (
-    <section className="col-md-6 mx-auto border mt-4 p-4">
+    <section className="col-10 col-md-6 mx-auto border mt-4 p-4">
       <h2>Edit User</h2>
       <form>
         <label htmlFor="postTitle" className="d-block mb-2">
@@ -35,9 +35,9 @@ export const EditUserForm = ({ match }: RouteComponentProps<TParams>) => {
         </label>
         <input
           type="text"
-          id="postTitle"
-          name="postTitle"
-          placeholder="What's on your mind?"
+          id="username"
+          name="username"
+          placeholder="Username"
           value={username}
           onChange={onUserNameChanged}
           className="d-block mb-2"

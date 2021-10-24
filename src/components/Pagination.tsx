@@ -16,6 +16,7 @@ export const Pagination = ({ page, totalPages, setPage }: PaginationPros) => {
             Previous
           </button>
         </li>
+        <li className="border text-primary p-2">{page + " / " + totalPages}</li>
         <li>
           <button
             className={"page-link mx-3"}
