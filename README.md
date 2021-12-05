@@ -1,6 +1,6 @@
 Simple news feed app using react, redux and typescript.
 
-Here you can find the deployed app:
+Here you can find the deployed version:
 
 https://mindtech-blog.herokuapp.com/
 
