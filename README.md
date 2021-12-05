@@ -1,4 +1,4 @@
-Simple news feed app using react, redux, bootstrap and java.
+Simple news feed app using react, redux, bootstrap and typescript.
 
 Here you can find the deployed app:
 
