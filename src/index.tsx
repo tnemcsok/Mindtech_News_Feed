@@ -6,7 +6,7 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { fetchPosts } from "./features/posts/postsSlice";
 import { fetchUsers } from "./features/users/usersSlice";
-import { fetchComments } from "./features/comments/commentsSlice";
+
 
 store.dispatch(fetchUsers());
 store.dispatch(fetchPosts());
